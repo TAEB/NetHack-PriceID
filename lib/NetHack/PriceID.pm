@@ -25,7 +25,8 @@ sub priceid
         @_,
     );
 
-    return 500 if $args{out} eq 'base';
+    $args{cost} *= 2 if $args{in} eq 'sell';
+    return $args{cost} if $args{out} eq 'base';
 
     $args{type} = $glyph2type{ $args{type} } || $args{type};
     return @{ $item_table{ $args{type} } };
