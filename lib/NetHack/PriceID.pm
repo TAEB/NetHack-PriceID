@@ -2,6 +2,8 @@
 package NetHack::PriceID;
 use strict;
 use warnings;
+use integer;
+
 use parent 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 
@@ -54,7 +56,38 @@ sub priceid
 sub priceid_buy
 {
     my %args = _canonicalize_args(@_);
-    my @base = $args{cost};
+    my @base;
+
+    for my $base (keys %{ $item_table{ $args{type} } })
+    {
+        my $tmp = $base;
+
+        $tmp = 5 if !$tmp;
+
+        my $surcharge = $tmp + $tmp / 3;
+
+        for ($tmp, $surcharge)
+        {
+            $_ += $_ / 3 if $args{tourist};
+            $_ += $_ / 3 if $args{dunce};
+
+               if ($args{charisma} > 18) { $_ /= 2      }
+            elsif ($args{charisma} > 17) { $_ -= $_ / 3 }
+            elsif ($args{charisma} > 15) { $_ -= $_ / 4 }
+            elsif ($args{charisma} < 6)  { $_ *= 2      }
+            elsif ($args{charisma} < 8)  { $_ += $_ / 2 }
+            elsif ($args{charisma} < 11) { $_ += $_ / 3 }
+
+            $_ = 1 if $_ <= 0;
+
+            if ($_ == $args{cost})
+            {
+                push @base, $base;
+                last;
+            }
+        }
+    }
+
     return _canonicalize_output(\%args, @base);
 }
 
