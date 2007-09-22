@@ -44,7 +44,7 @@ is_deeply(\@p, [500], 'out => "base" lists only valid prices');
 (
     charisma => 10,
     in       => 'base',
-    cost     => 250,
+    cost     => 500,
     type     => '/',
     out      => 'base',
 );
