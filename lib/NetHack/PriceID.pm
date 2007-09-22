@@ -42,26 +42,28 @@ sub priceid
         @base = priceid_base(%args, out => 'base');
     }
 
-    return @base if $args{out} eq 'base';
-    return sort map {@{ $item_table{ $args{type} }{ $_ } }} @base;
+    return _canonicalize_output(\%args, @base);
 }
 
 sub priceid_buy
 {
     my %args = _canonicalize_args(@_);
-    return $args{cost};
+    my @base = $args{cost};
+    return _canonicalize_output(\%args, @base);
 }
 
 sub priceid_sell
 {
     my %args = _canonicalize_args(@_);
-    return $args{cost} * 2;
+    my @base = $args{cost} * 2;
+    return _canonicalize_output(\%args, @base);
 }
 
 sub priceid_base
 {
     my %args = _canonicalize_args(@_);
-    return $args{cost};
+    my @base = $args{cost};
+    return _canonicalize_output(\%args, @base);
 }
 
 sub _canonicalize_args
@@ -77,6 +79,14 @@ sub _canonicalize_args
     $args{type} = $glyph2type{ $args{type} } || $args{type};
 
     return %args;
+}
+
+sub _canonicalize_output
+{
+    my $args = shift;
+
+    return @_ if $args->{out} eq 'base';
+    return sort map {@{ $item_table{ $args->{type} }{ $_ } }} @_;
 }
 
 =head1 NAME
