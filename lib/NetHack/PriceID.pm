@@ -5,6 +5,18 @@ use warnings;
 use parent 'Exporter';
 our @EXPORT_OK = qw(priceid);
 
+our %glyph2type =
+(
+    '/' => 'wand',
+    '!' => 'potion',
+);
+
+our %item_table =
+(
+    wand => [qw/death wishing/],
+    potion => ['booze', 'fruit juice', 'see invisible', 'sickness'],
+);
+
 sub priceid
 {
     my %args =
@@ -14,8 +26,9 @@ sub priceid
     );
 
     return 500 if $args{out} eq 'base';
-    return qw/death wishing/ unless $args{type} eq 'potion';
-    return ('booze', 'fruit juice', 'see invisible', 'sickness');
+
+    $args{type} = $glyph2type{ $args{type} } || $args{type};
+    return @{ $item_table{ $args{type} } };
 }
 
 =head1 NAME
