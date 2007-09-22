@@ -33,10 +33,10 @@ is_deeply(\@p, ['death', 'wishing'], 'Base $500 wands');
 @p = priceid
 (
     charisma => 10,
-    sell => 1,
-    cost => 250,
-    type => '/',
-    out => 'base',
+    sell     => 1,
+    cost     => 250,
+    type     => '/',
+    out      => 'base',
 );
 is_deeply(\@p, [500], 'out => "base" lists only valid prices');
 
