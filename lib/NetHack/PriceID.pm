@@ -9,6 +9,7 @@ our %glyph2type =
 (
     '/' => 'wand',
     '!' => 'potion',
+    '?' => 'scroll',
 );
 
 our %item_table =
@@ -21,6 +22,11 @@ our %item_table =
     {
         50 => ['booze', 'fruit juice', 'see invisible', 'sickness'],
         250 => [qw/acid oil/],
+    },
+    scroll =>
+    {
+        60 => ['blank paper', 'enchant weapon'],
+        80 => ['enchant armor', 'remove curse'],
     },
 );
 
