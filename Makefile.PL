@@ -5,7 +5,8 @@ use inc::Module::Install;
 name           'NetHack-PriceID';
 all_from       'lib/NetHack/PriceID.pm';
 
-requires       '';
+requires       'Exporter';
+requires       'parent';
 
 build_requires 'Test::More';
 
