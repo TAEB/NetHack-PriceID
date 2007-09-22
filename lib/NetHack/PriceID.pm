@@ -26,13 +26,45 @@ our %item_table =
 
 sub priceid
 {
-    my %args = _canonicalize_input(@_);
+    my %args = _canonicalize_args(@_);
+    my @base;
 
-    return $args{cost} if $args{out} eq 'base';
-    return @{ $item_table{ $args{type} }{ $args{cost} } };
+    if ($args{in} eq 'sell')
+    {
+        @base = priceid_sell(%args, out => 'base');
+    }
+    elsif ($args{in} eq 'buy')
+    {
+        @base = priceid_buy(%args, out => 'base');
+    }
+    elsif ($args{in} eq 'base')
+    {
+        @base = priceid_base(%args, out => 'base');
+    }
+
+    return @base if $args{out} eq 'base';
+    return sort map {@{ $item_table{ $args{type} }{ $_ } }} @base;
 }
 
-sub _canonicalize_input
+sub priceid_buy
+{
+    my %args = _canonicalize_args(@_);
+    return $args{cost};
+}
+
+sub priceid_sell
+{
+    my %args = _canonicalize_args(@_);
+    return $args{cost} * 2;
+}
+
+sub priceid_base
+{
+    my %args = _canonicalize_args(@_);
+    return $args{cost};
+}
+
+sub _canonicalize_args
 {
     my %args =
     (
@@ -42,7 +74,6 @@ sub _canonicalize_input
         @_,
     );
 
-    $args{cost} *= 2 if $args{in} eq 'sell';
     $args{type} = $glyph2type{ $args{type} } || $args{type};
 
     return %args;
