@@ -2,8 +2,14 @@
 package NetHack::PriceID;
 use strict;
 use warnings;
+use parent 'Exporter';
+our @EXPORT_OK = qw(priceid);
 
-
+sub priceid
+{
+    my %args = @_;
+    return ("death", "wishing");
+}
 
 =head1 NAME
 
