@@ -13,8 +13,15 @@ our %glyph2type =
 
 our %item_table =
 (
-    wand => [qw/death wishing/],
-    potion => ['booze', 'fruit juice', 'see invisible', 'sickness'],
+    wand =>
+    {
+        500 => [qw/death wishing/],
+    },
+    potion =>
+    {
+        50 => ['booze', 'fruit juice', 'see invisible', 'sickness'],
+        250 => [qw/acid oil/],
+    },
 );
 
 sub priceid
@@ -29,7 +36,7 @@ sub priceid
     return $args{cost} if $args{out} eq 'base';
 
     $args{type} = $glyph2type{ $args{type} } || $args{type};
-    return @{ $item_table{ $args{type} } };
+    return @{ $item_table{ $args{type} }{ $args{cost} } };
 }
 
 =head1 NAME
