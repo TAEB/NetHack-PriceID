@@ -26,17 +26,26 @@ our %item_table =
 
 sub priceid
 {
+    my %args = _canonicalize_input(@_);
+
+    return $args{cost} if $args{out} eq 'base';
+    return @{ $item_table{ $args{type} }{ $args{cost} } };
+}
+
+sub _canonicalize_input
+{
     my %args =
     (
+        in => 'base',
         out => 'hits',
+        charisma => 10,
         @_,
     );
 
     $args{cost} *= 2 if $args{in} eq 'sell';
-    return $args{cost} if $args{out} eq 'base';
-
     $args{type} = $glyph2type{ $args{type} } || $args{type};
-    return @{ $item_table{ $args{type} }{ $args{cost} } };
+
+    return %args;
 }
 
 =head1 NAME
