@@ -7,8 +7,13 @@ our @EXPORT_OK = qw(priceid);
 
 sub priceid
 {
-    my %args = @_;
-    return ("death", "wishing");
+    my %args =
+    (
+        out => 'hits',
+        @_,
+    );
+
+    return $args{out} eq 'base' ? 500 : ("death", "wishing");
 }
 
 =head1 NAME
