@@ -13,7 +13,9 @@ sub priceid
         @_,
     );
 
-    return $args{out} eq 'base' ? 500 : ("death", "wishing");
+    return 500 if $args{out} eq 'base';
+    return qw/death wishing/ unless $args{type} eq 'potion';
+    return ('booze', 'fruit juice', 'see invisible', 'sickness');
 }
 
 =head1 NAME
