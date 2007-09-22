@@ -1,7 +1,7 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 4;
 use NetHack::PriceID 'priceid';
 
 my @p = priceid
@@ -29,4 +29,14 @@ is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $500 at 10 charisma');
     type     => '/',
 );
 is_deeply(\@p, ['death', 'wishing'], 'Base $500 wands');
+
+@p = priceid
+(
+    charisma => 10,
+    sell => 1,
+    cost => 250,
+    type => '/',
+    out => 'base',
+);
+is_deeply(\@p, [500], 'out => "base" lists only valid prices');
 
