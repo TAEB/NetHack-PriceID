@@ -124,7 +124,7 @@ sub _canonicalize_output
 {
     my $args = shift;
 
-    return @_ if $args->{out} eq 'base';
+    return sort @_ if $args->{out} eq 'base';
     return sort map {@{ $item_table{ $args->{type} }{ $_ } }} @_;
 }
 
