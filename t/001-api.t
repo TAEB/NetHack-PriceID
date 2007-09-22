@@ -1,7 +1,7 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 10;
 use NetHack::PriceID 'priceid';
 
 my @p = priceid
@@ -54,7 +54,7 @@ is_deeply(\@p, [500], 'out => "base" lists only valid prices');
 (
     charisma => 10,
     in       => 'base',
-    cost     => 250,
+    cost     => 500,
     type     => 'wand',
     out      => 'hits',
 );
