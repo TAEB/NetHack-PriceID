@@ -85,9 +85,18 @@ is_deeply(\@p, [50], 'base price of base 50 potions');
 (
     charisma => 10,
     in       => 'base',
-    cost     => 100,
+    cost     => 250,
     type     => '!',
     out      => 'base',
 );
-is_deeply(\@p, [100], 'base price of base 100 potions');
+is_deeply(\@p, [250], 'base price of base 250 potions');
+
+@p = priceid
+(
+    charisma => 10,
+    in       => 'base',
+    cost     => 250,
+    type     => '!',
+);
+is_deeply(\@p, [qw/acid oil/], 'base 250 potions');
 
