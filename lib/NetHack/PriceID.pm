@@ -3,7 +3,7 @@ package NetHack::PriceID;
 use strict;
 use warnings;
 use parent 'Exporter';
-our @EXPORT_OK = qw(priceid);
+our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 
 our %glyph2type =
 (
