@@ -17,10 +17,10 @@ is_deeply(\@p, ['death', 'wishing'], 'Selling a wand for $250 at 10 charisma');
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 500,
+    cost     => 666,
     type     => '/',
 );
-is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $500 at 10 charisma');
+is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $666 at 10 charisma');
 
 @p = priceid
 (
