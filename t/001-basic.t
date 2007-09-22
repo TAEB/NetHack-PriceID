@@ -1,8 +1,24 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 1;
-use NetHack::PriceID;
+use Test::More tests => 2;
+use NetHack::PriceID 'priceid';
 
-ok(1);
+my @p = priceid
+(
+    charisma => 10,
+    sell => 1,
+    cost => 250,
+    type => '/',
+);
+is_deeply(\@p, ['death', 'wishing'], 'Selling a wand for $250 at 10 charisma');
+
+@p = priceid
+(
+    charisma => 10,
+    buy      => 1,
+    cost     => 500,
+    type     => '/',
+);
+is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $500 at 10 charisma');
 
