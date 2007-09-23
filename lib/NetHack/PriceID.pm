@@ -22,8 +22,8 @@ our %item_table =
 (
     amulet =>
     {
-            0 => ['cheap plastic imitation of the Amulet of Yendor'],
-          150 => ['change', 'ESP', 'life saving', 'magical breathing',
+        0     => ['cheap plastic imitation of the Amulet of Yendor'],
+        150   => ['change', 'ESP', 'life saving', 'magical breathing',
                   'reflection', 'restful sleep', 'strangulation',
                   'unchanging', 'versus poison'],
         30000 => ['Amulet of Yendor'],
