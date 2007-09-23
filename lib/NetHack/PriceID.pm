@@ -391,9 +391,9 @@ reflect a change in whether we get a random surcharge).
 
 This game has not been going well. This wizard has had his cloak of magic
 resistance stolen by a nymph. The conical hat that he hurriedly put on turned
-out to be a dunce cap. Furthermore, nothing is covering his colorful Hawaiian
+out to be a dunce cap. Furthermore, nothing is covering his cursed Hawaiian
 shirt. He has just found a store and is pricing the items in it. He picks up a
-wand.
+wand...
 
     "For you, most gracious sir; only 888 for this curved wand.";
 
@@ -445,6 +445,11 @@ It'd be great if all we had to do is hand in the string
 and have the module figure out the relevant bits. Also, possibly, the entire
 screen (so that charisma could be discerned).
 
+=item Ignore items I already know
+
+You could pass in a list of items that you've already identified or ruled out,
+and the module would not include those in the list of possibilities.
+
 =back
 
 =head1 SEE ALSO
@@ -462,6 +467,10 @@ L<http://hsp.katron.org/nh-helper.html>
 =item NetHack Object Identification Spoiler
 
 L<http://www.chiark.greenend.org.uk/~damerell/games/nhid.html>
+
+=item Interhack
+
+L<http://interhack.us/>
 
 =back
 
