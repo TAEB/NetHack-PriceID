@@ -248,7 +248,7 @@ our $VERSION = '0.01';
 
 =head1 DESCRIPTION
 
-NetHack, the game of hackers, has a large item-identification subgame. The
+NetHack, the game of princes, has a large item-identification subgame. The
 quickest way to gauge how useful an item is is to "price identify" it. This
 involves trying to buy or sell the item in a store, which tells you its price.
 Item types (scrolls, potions, wands, etc) are divided into about five price
