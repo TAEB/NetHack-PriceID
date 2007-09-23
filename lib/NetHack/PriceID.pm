@@ -349,16 +349,21 @@ cannot abide inconsistency.
 =over 4
 
 =item Tools
-=item Armor, weapons
 
 These will require sub-types, since it's not all that useful to know how a horn would price ID when you're looking at bags.
 
-Armor and weapons will also require the $10/enchantment check.
+=item Armor, weapons
+
+Armor and weapons have an additional $10/enchantment charge. Also subtypes.
 
 =item User-defined item tables
 
 This would be mostly useful for Slash'EM and Sporkhack. Does Slash'EM even use
 the same cost calculations? Probably.
+
+=item Ignore trivial identifications
+
+Yes, we know that C<an unlabeled scroll> is blank paper, and C<clear potion> is water. We usually don't need the module to report these.
 
 =item How much would this item cost?
 
