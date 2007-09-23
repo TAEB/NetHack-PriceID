@@ -211,7 +211,6 @@ sub _canonicalize_args
     (
         in => 'base',
         out => 'hits',
-        charisma => 10,
         quan => 1,
         @_,
     );
@@ -244,8 +243,7 @@ our $VERSION = '0.01';
 =head1 SYNOPSIS
 
     use NetHack::PriceID 'priceid';
-    print join ', ', priceid(charisma => 13,
-                             type => '?',
+    print join ', ', priceid(type => '?',
                              amount => 100,
                              in => 'sell');
     # amnesia, create monster, earth, taming
@@ -297,8 +295,8 @@ willing to give you in exchange for the item.
 =item charisma => 3..25 (required for 'buy')
 
 The charisma of the character. Base and sell prices are independent of
-charisma, so it's required only for buying. In any case, you shouldn't rely on
-the default of 10.
+charisma, so it's required only for buying. This will croak if you try to
+buy price-ID without setting the charisma.
 
 =item out => base|hits (default: hits)
 
@@ -354,13 +352,11 @@ cannot abide inconsistency.
 
 =item Selling
 
-You are selling an unknown ring and want to know what kind it may be. You have
-seventeen charisma, and no unusual surcharges.
+You are selling an unknown ring and want to know what kind it may be. We have no unusual surcharges (and charisma is not needed when sell IDing).
 
     "Wonotobo offers 75 gold pieces for your clay ring.  Sell it?";
 
-    priceid(charisma => 17,
-            in => 'sell',
+    priceid(in => 'sell',
             type => 'ring',
             amount => 75);
     => ('aggravate monster', 'cold resistance', 'fire resistance', 'free
@@ -372,8 +368,7 @@ seventeen charisma, and no unusual surcharges.
 Well, that's an awful lot of hits. Let's just look at the actual base prices
 that we get back.
 
-    priceid(charisma => 17,
-            in => 'sell',
+    priceid(in => 'sell',
             type => 'ring',
             amount => 75,
             out => 'base');
@@ -385,10 +380,9 @@ reflect a change in whether we get a random surcharge).
 
     "Wonotobo offers 100 gold pieces for your clay ring.  Sell it?";
 
-    priceid(charisma => 17,
-             in => 'sell',
-             type => 'ring',
-             amount => 100)
+    priceid(in => 'sell',
+            type => 'ring',
+            amount => 100)
     => ('fire resistance', 'free action', 'levitation', 'regeneration',
         'searching', 'slow digestion', 'teleportation')
 
