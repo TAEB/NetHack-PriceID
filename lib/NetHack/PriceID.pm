@@ -210,7 +210,7 @@ sub _canonicalize_args
     my %args =
     (
         in => 'base',
-        out => 'hits',
+        out => 'names',
         quan => 1,
         @_,
     );
@@ -298,11 +298,11 @@ The charisma of the character. Base and sell prices are independent of
 charisma, so it's required only for buying. This will croak if you try to
 buy price-ID without setting the charisma.
 
-=item out => base|hits (default: hits)
+=item out => base|names (default: names)
 
 The output format. C<base> will return 0, 1, or 2 possible base prices that
 the input can be. Buying and selling always map to two prices, but some of
-those prices do not have items. C<hits> will return the actual names of the
+those prices do not have items. C<names> will return the actual names of the
 possible items.
 
 =item tourist => BOOL (default: false)

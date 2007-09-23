@@ -55,7 +55,7 @@ is_deeply(\@p, [500], 'out => "base" lists only valid prices');
     in       => 'base',
     amount   => 500,
     type     => 'wand',
-    out      => 'hits',
+    out      => 'names',
 );
 is_deeply(\@p, ['death', 'wishing'], 'type works with words and glyphs');
 
@@ -65,7 +65,7 @@ is_deeply(\@p, ['death', 'wishing'], 'type works with words and glyphs');
     in       => 'base',
     amount   => 50,
     type     => 'potion',
-    out      => 'hits',
+    out      => 'names',
 );
 is_deeply(\@p, ['booze', 'fruit juice', 'see invisible', 'sickness'],
     'testing different types');
