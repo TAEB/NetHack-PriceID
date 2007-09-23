@@ -329,9 +329,70 @@ take it. That doesn't help much for identification.
 How many items in the stack you're buying/selling. Most people try to identify
 with only one item, but this is available if you take the path less trodden.
 
+=back
+
+=head2 priceid_buy PARAMHASH
+
+Same as C<priceid> except with a default of C<< in => 'buy' >>.
+
+=head2 priceid_sell PARAMHASH
+
+Same as C<priceid> except with a default of C<< in => 'sell' >>.
+
+=head2 priceid_base PARAMHASH
+
+Same as C<priceid>, which does have a default of C<< in => 'base' >>, but I
+cannot abide inconsistency.
+
+=head1 TODO
+
+=over 4
+
+=item Tools
+=item Armor, weapons
+
+These will require sub-types, since it's not all that useful to know how a horn would price ID when you're looking at bags.
+
+Armor and weapons will also require the $10/enchantment check.
+
+=item User-defined item tables
+
+This would be mostly useful for Slash'EM and Sporkhack. Does Slash'EM even use
+the same cost calculations? Probably.
+
+=item How much would this item cost?
+
+This is already implemented, somewhat, it's just hidden in C<priceid_buy> and
+C<priceid_sell>. It should be factored out and made into API.
+
+=item Parse the actual NetHack output
+
+It'd be great if all we had to do is hand in the string
+
+    Wonotobo offers 30 gold pieces for your scroll labeled KIRJE.  Sell it?
+
+and have the module figure out the relevant bits. Also, possibly, the entire
+screen (so that charisma could be discerned).
+
+=back
+
 =head1 SEE ALSO
 
-L<Foo::Bar>
+=over 4
+
+=item Clippy
+
+L<http://nethack.roy.org/clippy/clippy.pl>
+
+=item HiSPeed's NetHack Helper
+
+L<http://hsp.katron.org/nh-helper.html>
+
+=item NetHack Object Identification Spoiler
+
+L<http://www.chiark.greenend.org.uk/~damerell/games/nhid.html>
+
+=back
 
 =head1 AUTHOR
 
