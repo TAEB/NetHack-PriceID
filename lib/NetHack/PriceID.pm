@@ -464,6 +464,11 @@ screen (so that charisma could be discerned).
 You could pass in a list of items that you've already identified or ruled out,
 and the module would not include those in the list of possibilities.
 
+=item Ship a price-ID script
+
+It's not difficult to write a script to wrap these functions. One will be
+provided in 0.02.
+
 =back
 
 =head1 SEE ALSO
