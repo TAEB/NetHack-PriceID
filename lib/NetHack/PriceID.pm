@@ -277,7 +277,7 @@ exported in the usual manner.
 
 =head2 priceid PARAMHASH
 
-This is the method most people will be using. It will transform a amount and
+This is the method most people will be using. It will transform an amount and
 other information into possible identities. Its arguments are passed as a
 hash:
 
@@ -286,19 +286,21 @@ hash:
 =item type => scroll|ring|wand|...|?|=|/|... (required)
 
 The item type. Valid values are the type name or its glyph: scroll (?), ring
-(=), wand (/), amulet ("), spellbook (+), and potion (!).
+(=), wand (/), amulet ("), spellbook (+), and potion (!). Not specifying a
+type, or specifying an invalid type, will cause an error to be thrown.
 
 =item amount => INT (required)
 
 The amount ("cost") of the item. How the priceid function interprets this
-amount is dependent on the C<in> parameter.
+amount is dependent on the C<in> parameter. Not specifying an amount will cause
+an error to be thrown.
 
 =item in => buy|sell|base (default: base)
 
-What kind of operation. C<base> assumes the C<amount> is the base price. C<buy>
+The type of operation. C<base> assumes the C<amount> is the base price. C<buy>
 assumes the C<amount> is the amount of money the shopkeeper is charging you for
-the item. C<sell> assumes the C<amount> is the amount of money the shopkeeper is
-willing to give you in exchange for the item.
+the item. C<sell> assumes the C<amount> is the number of Zorkmids the
+shopkeeper is willing to give you in exchange for the item.
 
 =item charisma => 3..25 (required for 'buy')
 
@@ -308,10 +310,10 @@ buy price-ID without setting the charisma.
 
 =item out => base|names (default: names)
 
-The output format. C<base> will return 0, 1, or 2 possible base prices that
-the input can be. Buying and selling always map to two prices, but some of
-those prices do not have items. C<names> will return the actual names of the
-possible items.
+The output format. C<base> will return 0, 1, or 2 possible base prices that the
+input can possibly be. Buying and selling always map to two prices, but usually
+one of those prices has no items, so it is not given. C<names> will return the
+actual names of the possible items.
 
 =item tourist => BOOL (default: false)
 
@@ -360,7 +362,8 @@ cannot abide inconsistency.
 
 =item Selling
 
-You are selling an unknown ring and want to know what kind it may be. We have no unusual surcharges (and charisma is not needed when sell IDing).
+You are selling an unknown ring and want to know what kind it may be. We have
+no unusual surcharges (and charisma is not needed when sell IDing).
 
     "Wonotobo offers 75 gold pieces for your clay ring.  Sell it?";
 
@@ -425,7 +428,8 @@ shopkeeper, and turns to stone... oops, no gloves!
 
 =item Tools
 
-These will require sub-types, since it's not all that useful to know how a horn would price ID when you're looking at bags.
+These will require sub-types, since it's not all that useful to know how a horn
+would price ID when you're looking at bags.
 
 =item Armor, weapons
 
@@ -438,7 +442,8 @@ the same cost calculations? Probably.
 
 =item Ignore trivial identifications
 
-Yes, we know that C<an unlabeled scroll> is blank paper, and C<clear potion> is water. We usually don't need the module to report these.
+Yes, we know that C<an unlabeled scroll> is blank paper, and C<clear potion> is
+water. We usually don't need the module to report these.
 
 =item How much would this item cost?
 
