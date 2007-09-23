@@ -276,9 +276,8 @@ hash:
 
 =item type => scroll|ring|wand|...|?|=|/|... (required)
 
-The item type. Valid values are the type name and its glyph: scroll (?), ring
-(=), wand (/), amulet ("), spellbook (+), and potion (!). Future versions will
-support more item types (such as tools and armor).
+The item type. Valid values are the type name or its glyph: scroll (?), ring
+(=), wand (/), amulet ("), spellbook (+), and potion (!).
 
 =item amount => INT (required)
 
@@ -359,11 +358,12 @@ You are selling an unknown ring and want to know what kind it may be. We have no
     priceid(in => 'sell',
             type => 'ring',
             amount => 75);
-    => ('aggravate monster', 'cold resistance', 'fire resistance', 'free
-         action', 'gain constitution', 'gain strength', 'increase accuracy',
-        'increase damage', 'invisibility', 'levitation', 'poison resistance',
-        'regeneration', 'searching', 'see invisible', 'shock resistance', 'slow
-         digestion', 'teleportation')
+    => ('aggravate monster', 'cold resistance', 'fire
+         resistance', 'free action', 'gain constitution', 'gain
+         strength', 'increase accuracy', 'increase damage',
+        'invisibility', 'levitation', 'poison resistance',
+        'regeneration', 'searching', 'see invisible', 'shock
+         resistance', 'slow digestion', 'teleportation')
 
 Well, that's an awful lot of hits. Let's just look at the actual base prices
 that we get back.
@@ -383,8 +383,9 @@ reflect a change in whether we get a random surcharge).
     priceid(in => 'sell',
             type => 'ring',
             amount => 100)
-    => ('fire resistance', 'free action', 'levitation', 'regeneration',
-        'searching', 'slow digestion', 'teleportation')
+    => ('fire resistance', 'free action', 'levitation',
+        'regeneration', 'searching', 'slow digestion',
+        'teleportation')
 
 =item Buying with mods
 
