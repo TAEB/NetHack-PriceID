@@ -1,6 +1,15 @@
 NetHack-PriceID 0.01
 
-NetHack::PriceID is
+NetHack, the game of princes, has a large item-identification subgame. The
+quickest way to gauge how useful an item is is to "price identify" it. This
+involves trying to buy or sell the item in a store, which tells you its price.
+Item types (scrolls, potions, wands, etc) are each divided into about five
+price groups -- price IDing cuts down a large number of possible identities of
+an item.
+
+The calculations for price IDing aren't that difficult, but making sure to get
+all the edge cases (such as trying to identify items while the shopkeeper is
+attacking you -- and charging you more money) can be twiddly.
 
 MAJOR CHANGES
     0.01: first version
