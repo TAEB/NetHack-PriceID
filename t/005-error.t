@@ -1,7 +1,7 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 12;
 use NetHack::PriceID 'priceid';
 
 eval
@@ -16,6 +16,7 @@ eval
 
 ok($@);
 like($@, qr/Calculating 'buy' prices requires that you set 'charisma'/);
+like($@, qr/005-error/, "croak reports the correct file");
 
 eval
 {

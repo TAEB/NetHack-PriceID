@@ -107,6 +107,12 @@ our %item_table =
     },
 );
 
+sub _croak
+{
+    require Carp;
+    Carp::croak @_;
+}
+
 sub priceid
 {
     my %args = _canonicalize_args(@_);
@@ -133,7 +139,7 @@ sub priceid_buy
     my %args = _canonicalize_args(@_);
     my @base;
 
-    Carp::croak "Calculating 'buy' prices requires that you set 'charisma'."
+    _croak "Calculating 'buy' prices requires that you set 'charisma'."
         if !defined $args{charisma};
 
     for my $base (keys %{ $item_table{ $args{type} } })
@@ -216,15 +222,15 @@ sub _canonicalize_args
         @_,
     );
 
-    Carp::croak "Price IDing requires that you set 'amount'"
+    _croak "Price IDing requires that you set 'amount'"
         if !defined $args{amount};
 
-    Carp::croak "Price IDing requires that you set 'type'"
+    _croak "Price IDing requires that you set 'type'"
         if !defined $args{type};
 
     $args{type} = $glyph2type{ $args{type} } || $args{type};
 
-    Carp::croak "Unknown item type: $args{type}"
+    _croak "Unknown item type: $args{type}"
         if !exists $item_table{ $args{type} };
 
     return %args;
