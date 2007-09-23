@@ -155,7 +155,7 @@ sub priceid_buy
 
             if ($args{angry}) { $_ += ($_ + 2) / 3 }
 
-            if ($_ == $args{amount})
+            if (($_ * $args{quan}) == $args{amount})
             {
                 push @base, $base;
                 last;
@@ -173,7 +173,7 @@ sub priceid_sell
 
     for my $base (keys %{ $item_table{ $args{type} } })
     {
-        my $tmp = $base;
+        my $tmp = $base * $args{quan};
 
         if ($args{tourist})  { $tmp /= 3 }
         elsif ($args{dunce}) { $tmp /= 3 }
@@ -208,6 +208,7 @@ sub _canonicalize_args
         in => 'base',
         out => 'hits',
         charisma => 10,
+        quan => 1,
         @_,
     );
 
@@ -318,6 +319,11 @@ Determines whether the character suffers from the "angry shopkeeper" surcharge.
 If the shopkeeper is attacking you, you'll probably want to set this one to
 true. Warning: if you try to sell an item to an angry shopkeeper, they'll just
 take it. That doesn't help much for identification.
+
+=item quan => INT (default: 1)
+
+How many items in the stack you're buying/selling. Most people try to identify
+with only one item, but this is available if you take the path less trodden.
 
 =head1 SEE ALSO
 
