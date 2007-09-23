@@ -224,11 +224,11 @@ sub _canonicalize_output
 
 =head1 NAME
 
-NetHack::PriceID - ???
+NetHack::PriceID - identify items using shopkeepers
 
 =head1 VERSION
 
-Version 0.01 released ???
+Version 0.01 released 23 Sep 07
 
 =cut
 
@@ -236,12 +236,64 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-    use NetHack::PriceID;
-    do_stuff();
+    use NetHack::PriceID 'priceid';
+    print join ', ', priceid(charisma => 13,
+                             type => '?',
+                             amount => 100,
+                             in => 'sell');
 
 =head1 DESCRIPTION
 
+NetHack, the game of hackers, has a large item-identification subgame. The
+quickest way to gauge how useful an item is is to "price identify" it. This
+involves trying to buy or sell the item in a store, which tells you its price.
+Item types (scrolls, potions, wands, etc) are divided into about five price
+groups each -- price IDing cuts down a large number of possible identities of
+an item.
 
+The calculations for price IDing aren't that difficult, but making sure to get
+all the edge cases (such as trying to identify items while the shopkeeper is
+attacking you -- and charging you more money) can be twiddly.
+
+=head1 FUNCTIONS
+
+=head2 priceid PARAMHASH
+
+This is the method most people will be using. It will transform a amount and
+other information into possible identities. Its arguments are passed as a
+hash:
+
+=over 4
+
+=item amount => INT (required)
+
+The amount ("cost") of the item. How the priceid function interprets this
+amount is dependent on the C<in> parameter.
+
+=item in => buy|sell|base
+
+What kind of operation. C<base> assumes the C<amount> is the base price. C<buy>
+assumes the C<amount> is the amount of money the shopkeeper is charging you for
+the item. C<sell> assumes the C<amount> is the amount of money the shopkeeper is
+willing to give you in exchange for the item.
+
+=item charisma => 3..25 (required for buy and sell)
+
+The charisma of the character. Base price is independent of charisma, so it's
+required only for buying and selling.
+
+=item out => base|hits (default: hits)
+
+The output format. C<base> will return 0, 1, or 2 possible base prices that
+the input can be. Buying and selling always map to two prices, but some of
+those prices do not have items. C<hits> will return the actual names of the
+possible items.
+
+=item tourist => BOOL (default: false)
+
+Determines whether the character suffers from the "tourist" charge. Shopkeepers
+(as they presumably do in real life) will charge extra if they think you're a
+tourist. Characters 
 
 =head1 SEE ALSO
 
