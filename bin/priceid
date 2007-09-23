@@ -61,7 +61,7 @@ The cost or price of the item(s).
 
 =item -i[n] [:] <in>
 
-The type of operation.
+The type of operation (buy, sell, base). Default: base
 
 =for Euclid:
     in.type: /(b(uy)?|s(ell)?|base)/

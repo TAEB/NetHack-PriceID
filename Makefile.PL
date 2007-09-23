@@ -10,6 +10,8 @@ requires       'parent';
 
 build_requires 'Test::More';
 
+install_script 'bin/priceid';
+
 auto_install;
 WriteAll;
 
