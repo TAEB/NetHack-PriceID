@@ -41,7 +41,7 @@ This documentation refers to priceid version 0.02 released 23 Sep 07
 
 =item -t[ype] [:] <type>
 
-The item type that you're IDing.
+The item type that you're IDing, such as wand or ! (potion).
 
 =for Euclid:
     type.type: /([\"?+=!\/]|amulet|scroll|spellbook|ring|potion|wand)/
