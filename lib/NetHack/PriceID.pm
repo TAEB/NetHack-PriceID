@@ -94,7 +94,29 @@ sub priceid_buy
 sub priceid_sell
 {
     my %args = _canonicalize_args(@_);
-    my @base = $args{cost} * 2;
+    my @base;
+
+    for my $base (keys %{ $item_table{ $args{type} } })
+    {
+        my $tmp = $base;
+
+        if ($args{tourist})  { $tmp /= 3 }
+        elsif ($args{dunce}) { $tmp /= 3 }
+        else                 { $tmp /= 2 }
+
+        my $surcharge = $tmp - $tmp / 4;
+        $surcharge = $tmp unless $tmp > 1;
+
+        for ($tmp, $surcharge)
+        {
+            if ($_ == $args{cost})
+            {
+                push @base, $base;
+                last;
+            }
+        }
+    }
+
     return _canonicalize_output(\%args, @base);
 }
 
