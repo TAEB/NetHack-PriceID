@@ -240,6 +240,9 @@ sub _canonicalize_output
 {
     my $args = shift;
 
+    return map { [$_, @{ $item_table{ $args->{type} }{ $_ } || [] }] } sort @_
+        if $args->{out} eq 'both';
+
     return sort @_ if $args->{out} eq 'base';
     return sort map {@{ $item_table{ $args->{type} }{ $_ } || [] }} @_;
 }
@@ -315,12 +318,14 @@ The charisma of the character. Base and sell prices are independent of
 charisma, so it's required only for buying. This will croak if you try to
 buy price-ID without setting the charisma.
 
-=item out => base|names (default: names)
+=item out => base|names|both (default: names)
 
 The output format. C<base> will return 0, 1, or 2 possible base prices that the
 input can possibly be. Buying and selling always map to two prices, but usually
 one of those prices has no items, so it is not given. C<names> will return the
-actual names of the possible items.
+actual names of the possible items. C<both> will return a list of array
+references with the first element of each being the base price, and following
+elements being the item names.
 
 =item tourist => BOOL (default: false)
 
