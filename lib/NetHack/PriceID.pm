@@ -132,6 +132,9 @@ sub priceid_buy
     my %args = _canonicalize_args(@_);
     my @base;
 
+    Carp::croak "Calculating 'buy' prices requires that you set 'charisma'."
+        if !defined $args{charisma};
+
     for my $base (keys %{ $item_table{ $args{type} } })
     {
         my $tmp = $base;
@@ -291,11 +294,11 @@ assumes the C<amount> is the amount of money the shopkeeper is charging you for
 the item. C<sell> assumes the C<amount> is the amount of money the shopkeeper is
 willing to give you in exchange for the item.
 
-=item charisma => 3..25 (default: 10)
+=item charisma => 3..25 (required for 'buy')
 
-The charisma of the character. Base price is independent of charisma, so it's
-required only for buying and selling. You shouldn't rely on the default of 10.
-Future versions will probably throw an error if charisma is left unspecified.
+The charisma of the character. Base and sell prices are independent of
+charisma, so it's required only for buying. In any case, you shouldn't rely on
+the default of 10.
 
 =item out => base|hits (default: hits)
 
