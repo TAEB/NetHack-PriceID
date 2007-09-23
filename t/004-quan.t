@@ -64,7 +64,7 @@ is_deeply(\@p,
 
 is_deeply(\@p,
     ['blank paper', 'enchant weapon'],
-        'Selling 2 scrolls for $46 at 10 charisma');
+        'Selling 2 scrolls for $45 at 10 charisma');
 
 @p = priceid
 (
