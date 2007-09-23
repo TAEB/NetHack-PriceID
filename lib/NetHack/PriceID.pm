@@ -251,8 +251,8 @@ our $VERSION = '0.01';
 NetHack, the game of princes, has a large item-identification subgame. The
 quickest way to gauge how useful an item is is to "price identify" it. This
 involves trying to buy or sell the item in a store, which tells you its price.
-Item types (scrolls, potions, wands, etc) are divided into about five price
-groups each -- price IDing cuts down a large number of possible identities of
+Item types (scrolls, potions, wands, etc) are each divided into about five
+price groups -- price IDing cuts down a large number of possible identities of
 an item.
 
 The calculations for price IDing aren't that difficult, but making sure to get
@@ -343,6 +343,73 @@ Same as C<priceid> except with a default of C<< in => 'sell' >>.
 
 Same as C<priceid>, which does have a default of C<< in => 'base' >>, but I
 cannot abide inconsistency.
+
+=head1 EXAMPLES
+
+=over 4
+
+=item Selling
+
+You are selling an unknown ring and want to know what kind it may be. You have
+seventeen charisma, and no unusual surcharges.
+
+    "Wonotobo offers 75 gold pieces for your clay ring.  Sell it?";
+
+    priceid(charisma => 17,
+            in => 'sell',
+            type => 'ring',
+            amount => 75);
+    => ('aggravate monster', 'cold resistance', 'fire resistance', 'free
+         action', 'gain constitution', 'gain strength', 'increase accuracy',
+        'increase damage', 'invisibility', 'levitation', 'poison resistance',
+        'regeneration', 'searching', 'see invisible', 'shock resistance', 'slow
+         digestion', 'teleportation')
+
+Well, that's an awful lot of hits. Let's just look at the actual base prices
+that we get back.
+
+    priceid(charisma => 17,
+            in => 'sell',
+            type => 'ring',
+            amount => 75,
+            out => 'base');
+    => (150, 200)
+
+Ah. So we are at one of those "could be two possible categories" sweet spots.
+So we continue dropping the ring until we get a different price (which will
+reflect a change in whether we get a random surcharge).
+
+    "Wonotobo offers 100 gold pieces for your clay ring.  Sell it?";
+
+    priceid(charisma => 17,
+             in => 'sell',
+             type => 'ring',
+             amount => 100)
+    => ('fire resistance', 'free action', 'levitation', 'regeneration',
+        'searching', 'slow digestion', 'teleportation')
+
+=item Buying with mods
+
+This game has not been going well. This wizard has had his cloak of magic
+resistance stolen by a nymph. The conical hat that he hurriedly put on turned
+out to be a dunce cap. Furthermore, nothing is covering his colorful Hawaiian
+shirt. He has just found a store and is pricing the items in it. He picks up a
+wand.
+
+    "For you, most gracious sir; only 888 for this curved wand.";
+
+    priceid(charisma => 9,
+            in => 'buy',
+            type => 'wand',
+            dunce => 1,
+            tourist => 1,
+            amount => 888)
+    => ('death', 'wishing')
+
+He quickly zaps the wand, wishes for a cockatrice corpse with which to kill the
+shopkeeper, and turns to stone... oops, no gloves!
+
+=back
 
 =head1 TODO
 
