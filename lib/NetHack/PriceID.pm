@@ -6,6 +6,7 @@ use integer;
 
 use parent 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
+our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
 
 our %glyph2type =
 (
@@ -259,6 +260,9 @@ all the edge cases (such as trying to identify items while the shopkeeper is
 attacking you -- and charging you more money) can be twiddly.
 
 =head1 FUNCTIONS
+
+No functions are exported by default. Any of the following functions may be
+exported in the usual manner.
 
 =head2 priceid PARAMHASH
 

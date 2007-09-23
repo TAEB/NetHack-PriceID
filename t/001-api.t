@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use Test::More tests => 10;
-use NetHack::PriceID 'priceid';
+use NetHack::PriceID ':all';
 
 my @p = priceid
 (
@@ -30,10 +30,9 @@ is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $666 at 10 charisma');
 );
 is_deeply(\@p, ['death', 'wishing'], 'Base $500 wands');
 
-@p = priceid
+@p = priceid_sell
 (
     charisma => 10,
-    in       => 'sell',
     amount   => 250,
     type     => '/',
     out      => 'base',
@@ -81,20 +80,18 @@ is_deeply(\@p, ['booze', 'fruit juice', 'see invisible', 'sickness'],
 );
 is_deeply(\@p, [50], 'base price of base 50 potions');
 
-@p = priceid
+@p = priceid_base
 (
     charisma => 10,
-    in       => 'base',
     amount   => 250,
     type     => '!',
     out      => 'base',
 );
 is_deeply(\@p, [250], 'base price of base 250 potions');
 
-@p = priceid
+@p = priceid_base
 (
     charisma => 10,
-    in       => 'base',
     amount   => 250,
     type     => '!',
 );
