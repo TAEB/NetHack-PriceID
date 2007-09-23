@@ -7,6 +7,7 @@ all_from       'lib/NetHack/PriceID.pm';
 
 requires       'Exporter';
 requires       'parent';
+requires       'Getopt::Euclid';
 
 build_requires 'Test::More';
 
