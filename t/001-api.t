@@ -1,7 +1,7 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 10;
+use Test::More tests => 11;
 use NetHack::PriceID ':all';
 
 my @p = priceid
@@ -96,4 +96,17 @@ is_deeply(\@p, [250], 'base price of base 250 potions');
     type     => '!',
 );
 is_deeply(\@p, [qw/acid oil/], 'base 250 potions');
+
+@p = priceid
+(
+    charisma => 10,
+    in       => 'buy',
+    amount   => 106,
+    type     => '?',
+    out      => 'both',
+);
+is_deeply(\@p,
+    [[60, 'blank paper', 'enchant weapon'],
+     [80, 'enchant armor', 'remove curse']],
+        'Buying a scroll for $106 at 10 charisma');
 
