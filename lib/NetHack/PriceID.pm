@@ -249,7 +249,7 @@ sub _canonicalize_output
 
 =head1 NAME
 
-NetHack::PriceID - identify items using shopkeepers
+NetHack::PriceID - identify NetHack items using shopkeepers
 
 =head1 VERSION
 
