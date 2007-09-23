@@ -267,22 +267,29 @@ hash:
 
 =over 4
 
+=item type => scroll|ring|wand|...|?|=|/|... (required)
+
+The item type. Valid values are the type name and its glyph: scroll (?), ring
+(=), wand (/), amulet ("), spellbook (+), and potion (!). Future versions will
+support more item types (such as tools and armor).
+
 =item amount => INT (required)
 
 The amount ("cost") of the item. How the priceid function interprets this
 amount is dependent on the C<in> parameter.
 
-=item in => buy|sell|base
+=item in => buy|sell|base (default: base)
 
 What kind of operation. C<base> assumes the C<amount> is the base price. C<buy>
 assumes the C<amount> is the amount of money the shopkeeper is charging you for
 the item. C<sell> assumes the C<amount> is the amount of money the shopkeeper is
 willing to give you in exchange for the item.
 
-=item charisma => 3..25 (required for buy and sell)
+=item charisma => 3..25 (default: 10)
 
 The charisma of the character. Base price is independent of charisma, so it's
-required only for buying and selling.
+required only for buying and selling. You shouldn't rely on the default of 10.
+Future versions will probably throw an error if charisma is left unspecified.
 
 =item out => base|hits (default: hits)
 
@@ -293,9 +300,24 @@ possible items.
 
 =item tourist => BOOL (default: false)
 
-Determines whether the character suffers from the "tourist" charge. Shopkeepers
-(as they presumably do in real life) will charge extra if they think you're a
-tourist. Characters 
+Determines whether the character suffers from the "tourist" surcharge.
+Shopkeepers (as they presumably do in real life) will charge extra if they
+think you're a tourist. Characters that are in the tourist class and less than
+experience level 15 suffer this charge. Also, B<any> character that is wearing
+a Hawaiian shirt or T-shirt without body armor or cloak suffers this charge.
+
+=item dunce => BOOL (default: false)
+
+Determines whether the character suffers from the "dunce" surcharge. This
+applies to any character who is wearing a dunce cap. Whoops, should price ID
+those conical hats to filter for cornuthaums.
+
+=item angry => BOOL (default: false)
+
+Determines whether the character suffers from the "angry shopkeeper" surcharge.
+If the shopkeeper is attacking you, you'll probably want to set this one to
+true. Warning: if you try to sell an item to an angry shopkeeper, they'll just
+take it. That doesn't help much for identification.
 
 =head1 SEE ALSO
 
