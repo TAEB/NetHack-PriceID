@@ -123,8 +123,7 @@ sub priceid_sell
 sub priceid_base
 {
     my %args = _canonicalize_args(@_);
-    my @base = $args{cost};
-    return _canonicalize_output(\%args, @base);
+    return _canonicalize_output(\%args, $args{cost});
 }
 
 sub _canonicalize_args
