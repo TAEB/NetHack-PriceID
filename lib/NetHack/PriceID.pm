@@ -153,6 +153,8 @@ sub priceid_buy
 
             $_ = 1 if $_ <= 0;
 
+            if ($args{angry}) { $_ += ($_ + 2) / 3 }
+
             if ($_ == $args{amount})
             {
                 push @base, $base;
