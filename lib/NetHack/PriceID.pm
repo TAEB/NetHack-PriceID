@@ -215,7 +215,16 @@ sub _canonicalize_args
         @_,
     );
 
+    Carp::croak "Price IDing requires that you set 'amount'"
+        if !defined $args{amount};
+
+    Carp::croak "Price IDing requires that you set 'type'"
+        if !defined $args{type};
+
     $args{type} = $glyph2type{ $args{type} } || $args{type};
+
+    Carp::croak "Unknown item type: $args{type}"
+        if !exists $item_table{ $args{type} };
 
     return %args;
 }
@@ -225,7 +234,7 @@ sub _canonicalize_output
     my $args = shift;
 
     return sort @_ if $args->{out} eq 'base';
-    return sort map {@{ $item_table{ $args->{type} }{ $_ } }} @_;
+    return sort map {@{ $item_table{ $args->{type} }{ $_ } || [] }} @_;
 }
 
 =head1 NAME
