@@ -16,7 +16,7 @@ is_deeply(\@p,
     ['blank paper', 'enchant armor', 'enchant weapon', 'remove curse'],
         'Selling a scroll for $30 at 10 charisma');
 
-my @p = priceid
+@p = priceid
 (
     charisma => 10,
     in       => 'sell',
@@ -28,7 +28,7 @@ is_deeply(\@p,
     ['blank paper', 'enchant weapon'],
         'Selling a scroll for $23 at 10 charisma');
 
-my @p = priceid
+@p = priceid
 (
     charisma => 10,
     in       => 'sell',
