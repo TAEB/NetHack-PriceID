@@ -9,26 +9,99 @@ our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 
 our %glyph2type =
 (
-    '/' => 'wand',
-    '!' => 'potion',
+    '"' => 'amulet',
     '?' => 'scroll',
+    '+' => 'spellbook',
+    '=' => 'ring',
+    '!' => 'potion',
+    '/' => 'wand',
 );
 
 our %item_table =
 (
-    wand =>
+    amulet =>
     {
-        500 => [qw/death wishing/],
+            0 => ['cheap plastic imitation of the Amulet of Yendor'],
+          150 => ['change', 'ESP', 'life saving', 'magical breathing',
+                  'reflection', 'restful sleep', 'strangulation',
+                  'unchanging', 'versus poison'],
+        30000 => ['Amulet of Yendor'],
     },
-    potion =>
-    {
-        50 => ['booze', 'fruit juice', 'see invisible', 'sickness'],
-        250 => [qw/acid oil/],
-    },
+
     scroll =>
     {
-        60 => ['blank paper', 'enchant weapon'],
-        80 => ['enchant armor', 'remove curse'],
+        20  => ['identify'],
+        50  => ['light'],
+        60  => ['blank paper', 'enchant weapon'],
+        80  => ['enchant armor', 'remove curse'],
+        100 => ['confuse monster', 'destroy armor', 'fire',
+                'food detection', 'gold detection', 'magic mapping',
+                'scare monster', 'teleportation'],
+        200 => ['amnesia', 'create monster', 'earth', 'taming'],
+        300 => ['charging', 'genocide', 'punishment', 'stinking cloud'],
+    },
+
+    spellbook =>
+    {
+        100 => ['detect monsters', 'force bolt', 'healing', 'jumping',
+                'knock', 'light', 'protection', 'sleep'],
+        200 => ['confuse monster', 'create monster', 'cure blindness',
+                'detect food', 'drain life', 'magic missile',
+                'slow monster', 'wizard lock'],
+        300 => ['cause fear', 'charm monster', 'clairvoyance',
+                'cure sickness', 'detect unseen', 'extra healing',
+                'haste self', 'identify', 'remove curse',
+                'stone to flesh'],
+        400 => ['cone of cold', 'detect treasure', 'fireball',
+                'invisibility', 'levitation', 'restore ability'],
+        500 => ['dig', 'magic mapping'],
+        600 => ['create familiar', 'polymorph', 'teleport away',
+                'turn undead'],
+        700 => ['cancellation', 'finger of death'],
+    },
+
+    potion =>
+    {
+        0   => ['uncursed water'],
+        50  => ['booze', 'fruit juice', 'see invisible', 'sickness'],
+        100 => ['confusion', 'extra healing', 'hallucination', 'healing',
+                'restore ability', 'sleeping', '(un)holy water'],
+        150 => ['blindness', 'gain energy', 'invisibility',
+                'monster detection', 'object detection'],
+        200 => ['enlightenment', 'full healing', 'levitation', 'polymorph',
+                'speed'],
+        250 => ['acid', 'oil'],
+        300 => ['gain ability', 'gain level', 'paralysis'],
+    },
+
+    ring =>
+    {
+        100 => ['adornment', 'hunger', 'protection',
+                'protection from shape changers', 'stealth',
+                'sustain ability', 'warning'],
+        150 => ['aggravate monster', 'cold resistance',
+                'gain constitution', 'gain strength', 'increase accuracy',
+                'increase damage', 'invisibility', 'poison resistance',
+                'see invisible', 'shock resistance'],
+        200 => ['fire resistance', 'free action', 'levitation',
+                'regeneration', 'searching', 'slow digestion',
+                'teleportation'],
+        300 => ['conflict', 'polymorph', 'polymorph control',
+                'teleport control'],
+    },
+
+    wand =>
+    {
+        0   => ['uncharged'],
+        100 => ['light', 'nothing'],
+        150 => ['digging', 'enlightenment', 'locking', 'magic missile',
+                'make invisible', 'opening', 'probing',
+                'secret door detection', 'slow monster', 'speed monster',
+                'striking', 'undead turning'],
+        175 => ['cold', 'fire', 'lightning', 'sleep'],
+        200 => ['cancellation', 'create monster', 'polymorph',
+                'teleportation'],
+        500 => ['death', 'wishing'],
     },
 );
 
