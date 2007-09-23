@@ -153,7 +153,7 @@ sub priceid_buy
 
             $_ = 1 if $_ <= 0;
 
-            if ($_ == $args{cost})
+            if ($_ == $args{amount})
             {
                 push @base, $base;
                 last;
@@ -182,7 +182,7 @@ sub priceid_sell
 
         for ($tmp, $surcharge)
         {
-            if ($_ == $args{cost})
+            if ($_ == $args{amount})
             {
                 push @base, $base;
                 last;
@@ -196,7 +196,7 @@ sub priceid_sell
 sub priceid_base
 {
     my %args = _canonicalize_args(@_);
-    return _canonicalize_output(\%args, $args{cost});
+    return _canonicalize_output(\%args, $args{amount});
 }
 
 sub _canonicalize_args

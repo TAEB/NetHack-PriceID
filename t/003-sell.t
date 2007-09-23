@@ -8,7 +8,7 @@ my @p = priceid
 (
     charisma => 10,
     in       => 'sell',
-    cost     => 30,
+    amount   => 30,
     type     => '?',
 );
 
@@ -20,7 +20,7 @@ is_deeply(\@p,
 (
     charisma => 10,
     in       => 'sell',
-    cost     => 23,
+    amount   => 23,
     type     => '?',
 );
 
@@ -32,7 +32,7 @@ is_deeply(\@p,
 (
     charisma => 10,
     in       => 'sell',
-    cost     => 40,
+    amount   => 40,
     type     => '?',
 );
 

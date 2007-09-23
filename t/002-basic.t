@@ -8,7 +8,7 @@ my @p = priceid
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 106,
+    amount   => 106,
     type     => '?',
 );
 is_deeply(\@p,
@@ -19,7 +19,7 @@ is_deeply(\@p,
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 106,
+    amount   => 106,
     type     => '?',
     out      => 'base',
 );
@@ -29,7 +29,7 @@ is_deeply(\@p, [60, 80], 'Buying a scroll for $106 at 10 charisma, out=base');
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 80,
+    amount   => 80,
     type     => '?',
 );
 is_deeply(\@p, ['blank paper', 'enchant weapon'],
@@ -39,7 +39,7 @@ is_deeply(\@p, ['blank paper', 'enchant weapon'],
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 141,
+    amount   => 141,
     type     => '?',
 );
 is_deeply(\@p, ['enchant armor', 'remove curse'],
@@ -49,7 +49,7 @@ is_deeply(\@p, ['enchant armor', 'remove curse'],
 (
     charisma => 10,
     in       => 'buy',
-    cost     => 888,
+    amount   => 888,
     type     => '/',
 );
 is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $888 at 10 charisma');
@@ -59,7 +59,7 @@ is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $888 at 10 charisma');
 (
     charisma => 3,
     in       => 'buy',
-    cost     => 1000,
+    amount   => 1000,
     type     => '/',
 );
 is_deeply(\@p, ['death', 'wishing'], 'Buying a wand for $1000 at 3 charisma');
