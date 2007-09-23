@@ -1,6 +1,8 @@
 Revision history for NetHack-PriceID
 
-0.02
+0.02    Sun Sep 23 13:57:46 2007
+        Now includes a priceid script.
+        Apparently 5.10 doesn't automatically load Carp for you.
 
 0.01    Sat Sep 23 00:56:41 2007
         First version, released on an unsuspecting world.

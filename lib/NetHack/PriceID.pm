@@ -253,7 +253,7 @@ NetHack::PriceID - identify items using shopkeepers
 
 =head1 VERSION
 
-Version 0.02 released ???
+Version 0.02 released 23 Sep 07
 
 =cut
 
@@ -279,6 +279,8 @@ an item.
 The calculations for price IDing aren't that difficult, but making sure to get
 all the edge cases (such as trying to identify items while the shopkeeper is
 attacking you -- and charging you more money) can be twiddly.
+
+This module also comes with a C<priceid> script.
 
 =head1 FUNCTIONS
 
@@ -475,11 +477,6 @@ screen (so that charisma could be discerned).
 
 You could pass in a list of items that you've already identified or ruled out,
 and the module would not include those in the list of possibilities.
-
-=item Ship a price-ID script
-
-It's not difficult to write a script to wrap these functions. One will be
-provided in 0.02.
 
 =back
 
