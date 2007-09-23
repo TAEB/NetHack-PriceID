@@ -245,6 +245,7 @@ our $VERSION = '0.01';
                              type => '?',
                              amount => 100,
                              in => 'sell');
+    # amnesia, create monster, earth, taming
 
 =head1 DESCRIPTION
 
