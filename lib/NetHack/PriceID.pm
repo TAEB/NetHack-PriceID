@@ -16,6 +16,7 @@ our %glyph2type =
     '=' => 'ring',
     '!' => 'potion',
     '/' => 'wand',
+    '(' => 'tool',
 );
 
 our %item_table =
@@ -104,7 +105,30 @@ our %item_table =
                 'teleportation'],
         500 => ['death', 'wishing'],
     },
+
+    bag =>
+    {
+        2   => ['sack'],
+        100 => ['bag of holding', 'oilskin sack', 'bag of tricks'],
+    },
+
+    lamp =>
+    {
+        10 => ['oil lamp'],
+        50 => ['magic lamp'],
+    },
 );
+
+
+# dynamically construct a list of all tools from each tool subtype
+for my $in (qw/bag lamp/)
+{
+    while (my ($price, $items) = each %{ $item_table{$in} })
+    {
+        @{$item_table{tool}{$price}} = sort @{$item_table{tool}{$price} || []},
+                                            @$items;
+    }
+}
 
 sub _croak
 {
