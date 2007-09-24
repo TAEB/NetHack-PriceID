@@ -119,7 +119,6 @@ our %item_table =
     },
 );
 
-
 # dynamically construct a list of all tools from each tool subtype
 for my $in (qw/bag lamp/)
 {
