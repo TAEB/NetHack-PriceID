@@ -1,114 +1,44 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More tests => 24;
 use NetHack::PriceID 'priceid';
 
-my @p = priceid
-(
-    charisma => 12,
-    in       => 'sell',
-    amount   => 25,
-    type     => '(',
-);
-is_deeply(\@p, ['magic lamp'], 'Selling a lamp for $25 at 12 charisma');
+sub test_tool
+{
+    my ($subtype, $expected, $full, $sell, $buy, $charisma) = @_;
+    $charisma ||= 10;
+    $full ||= $expected;
 
-@p = priceid
-(
-    charisma => 12,
-    in       => 'sell',
-    amount   => 25,
-    type     => 'lamp',
-);
-is_deeply(\@p, ['magic lamp'], 'Selling a lamp for $25 at 12 charisma');
+    for my $type ($subtype, 'tool', '(')
+    {
+        my @p = priceid
+        (
+            charisma => $charisma,
+            in       => 'sell',
+            amount   => $sell,
+            type     => $type,
+        );
+        is_deeply(\@p, $expected, "Selling (@$expected) as $type for $sell at $charisma charisma");
 
-@p = priceid
-(
-    charisma => 12,
-    in       => 'sell',
-    amount   => 4,
-    type     => 'lamp',
-);
-is_deeply(\@p, ['oil lamp'], 'Selling a lamp for $12 at 12 charisma');
+        @p = priceid
+        (
+            charisma => $charisma,
+            in       => 'buy',
+            amount   => $buy,
+            type     => $type,
+        );
+        is_deeply(\@p, $expected, "Buying (@$expected) as $type for $buy at $charisma charisma");
 
-@p = priceid
-(
-    charisma => 12,
-    in       => 'sell',
-    amount   => 4,
-    type     => '(',
-);
-is_deeply(\@p, ['oil lamp'], 'Selling a lamp for $12 at 12 charisma');
+        # after $subtype is run, we need to check the full hits, not just the
+        # subtype's hits
+        $expected = $full;
+    }
+}
 
-@p = priceid
-(
-    charisma => 25,
-    in       => 'buy',
-    amount   => 5,
-    type     => 'lamp',
-);
-is_deeply(\@p, ['oil lamp'], 'Buying a lamp for $5 at 25 charisma');
+test_tool('lamp', ['magic lamp'], undef, 25, 66);
+test_tool('lamp', ['oil lamp'],   undef,  5, 13);
 
-@p = priceid
-(
-    charisma => 25,
-    in       => 'buy',
-    amount   => 5,
-    type     => '(',
-);
-is_deeply(\@p, ['oil lamp'], 'Buying a lamp for $5 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'sell',
-    amount   => 5,
-    type     => 'lamp',
-);
-is_deeply(\@p, ['oil lamp'], 'Selling a lamp for $5 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'sell',
-    amount   => 5,
-    type     => '(',
-);
-is_deeply(\@p, ['oil lamp'], 'Selling a lamp for $5 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'sell',
-    amount   => 1,
-    type     => 'bag',
-);
-is_deeply(\@p, ['sack'], 'Selling a bag for $1 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'sell',
-    amount   => 1,
-    type     => '(',
-);
-is_deeply(\@p, ['sack'], 'Selling a bag for $1 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'buy',
-    amount   => 1,
-    type     => 'bag',
-);
-is_deeply(\@p, ['sack'], 'Buying a bag for $1 at 25 charisma');
-
-@p = priceid
-(
-    charisma => 25,
-    in       => 'buy',
-    amount   => 1,
-    type     => '(',
-);
-is_deeply(\@p, ['sack'], 'Buying a bag for $1 at 25 charisma');
+test_tool('bag',  ['sack'], undef, 1, 2);
+test_tool('bag',  ['bag of holding', 'bag of tricks', 'oilskin sack'], undef, 38, 133);
 
