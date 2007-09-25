@@ -123,10 +123,16 @@ our %item_table =
         12 => ['wooden flute'],
         36 => ['magic flute'],
     },
+
+    horn =>
+    {
+        15 => ['tooled horn'],
+        50 => ['fire horn', 'frost horn'],
+    },
 );
 
 # dynamically construct a list of all tools from each tool subtype
-for my $in (qw/bag lamp flute/)
+for my $in (qw/bag lamp flute horn/)
 {
     while (my ($price, $items) = each %{ $item_table{$in} })
     {

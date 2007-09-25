@@ -1,7 +1,7 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More tests => 36;
+use Test::More tests => 48;
 use NetHack::PriceID 'priceid';
 
 sub test_tool
@@ -39,12 +39,17 @@ sub test_tool
     }
 }
 
-test_tool('lamp', 25, 66, ['magic lamp']);
+my $base50 = ['fire horn', 'frost horn', 'magic lamp'];
+
+test_tool('lamp', 25, 66, ['magic lamp'], $base50, $base50);
 test_tool('lamp',  5, 13, ['oil lamp'], ['oil lamp', 'wooden flute']);
 
 test_tool('bag', 1, 2, ['sack']);
 test_tool('bag', 38, 133, ['bag of holding', 'bag of tricks', 'oilskin sack']);
 
-test_tool('flute',  6, 16, ['wooden flute']);
+test_tool('flute',  6, 16, ['wooden flute'], ['tooled horn', 'wooden flute']);
 test_tool('flute', 18, 48, ['magic flute']);
+
+test_tool('horn',  7, 20, ['tooled horn']);
+test_tool('horn', 25, 66, ['fire horn', 'frost horn'], $base50, $base50);
 
