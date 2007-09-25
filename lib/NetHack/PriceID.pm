@@ -403,8 +403,10 @@ hash:
 =item type => scroll|ring|wand|...|?|=|/|... (required)
 
 The item type. Valid values are the type name or its glyph: scroll (?), ring
-(=), wand (/), amulet ("), spellbook (+), and potion (!). Not specifying a
-type, or specifying an invalid type, will cause an error to be thrown.
+(=), wand (/), amulet ("), spellbook (+), potion (!), tool ((), or armor ([).
+Tools are broken down further into bag, lamp, flute, and horn. Armor is broken
+down further into cloak, helmet, gloves, boots. Not specifying a type, or
+specifying an invalid type, will cause an error to be thrown.
 
 =item amount => INT (required)
 
