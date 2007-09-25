@@ -1,6 +1,6 @@
 Revision history for NetHack-PriceID
 
-0.03
+0.03    Mon Sep 24 21:40:58 2007
         Add tools (subtypes: lamp, bag, flute, horn)
         Add armor (subtypes: cloak, helmet, gloves, boots)
 

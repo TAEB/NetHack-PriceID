@@ -357,7 +357,7 @@ NetHack::PriceID - identify NetHack items using shopkeepers
 
 =head1 VERSION
 
-Version 0.03 released ???
+Version 0.03 released 24 Sep 07
 
 =cut
 
