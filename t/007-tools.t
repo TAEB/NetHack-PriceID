@@ -39,7 +39,7 @@ sub test_tool
     }
 }
 
-my $base50 = ['fire horn', 'frost horn', 'magic lamp'];
+my $base50 = ['fire horn', 'frost horn', 'horn of plenty', 'magic lamp'];
 
 test_tool('lamp', 25, 66, ['magic lamp'], $base50, $base50);
 test_tool('lamp',  5, 13, ['oil lamp'], ['oil lamp', 'wooden flute']);
@@ -51,5 +51,5 @@ test_tool('flute',  6, 16, ['wooden flute'], ['tooled horn', 'wooden flute']);
 test_tool('flute', 18, 48, ['magic flute']);
 
 test_tool('horn',  7, 20, ['tooled horn']);
-test_tool('horn', 25, 66, ['fire horn', 'frost horn'], $base50, $base50);
+test_tool('horn', 25, 66, ['fire horn', 'frost horn', 'horn of plenty'], $base50, $base50);
 

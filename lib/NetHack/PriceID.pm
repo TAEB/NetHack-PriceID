@@ -127,7 +127,7 @@ our %item_table =
     horn =>
     {
         15 => ['tooled horn'],
-        50 => ['fire horn', 'frost horn'],
+        50 => ['fire horn', 'frost horn', 'horn of plenty'],
     },
 );
 
