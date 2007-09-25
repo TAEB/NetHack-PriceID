@@ -544,15 +544,6 @@ shopkeeper, and turns to stone... oops, no gloves!
 
 =over 4
 
-=item Tools
-
-These will require sub-types, since it's not all that useful to know how a horn
-would price ID when you're looking at bags.
-
-=item Armor, weapons
-
-Armor and weapons have an additional $10/enchantment charge. Also subtypes.
-
 =item User-defined item tables
 
 This would be mostly useful for Slash'EM and Sporkhack. Does Slash'EM even use
