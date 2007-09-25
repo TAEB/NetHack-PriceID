@@ -2,6 +2,7 @@ Revision history for NetHack-PriceID
 
 0.03
         Add tools (subtypes: lamp, bag, flute, horn)
+        Add armor (subtypes: cloak, helmet, gloves, boots)
 
 0.02    Sun Sep 23 13:57:46 2007
         Now includes a priceid script.
