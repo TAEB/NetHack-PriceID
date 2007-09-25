@@ -151,6 +151,7 @@ our %item_table =
     helmet =>
     {
          1 => ['dunce cap'],
+        10 => ['helmet'],
         50 => ['helm of brilliance', 'helm of opposite alignment',
                'helm of telepathy'],
         80 => ['cornuthaum'],
