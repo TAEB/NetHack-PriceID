@@ -44,7 +44,7 @@ This documentation refers to priceid version 0.03 released ???
 The item type that you're IDing, such as wand or ! (potion).
 
 =for Euclid:
-    type.type: /([\"?+=!\/(]|amulet|scroll|spellbook|ring|potion|wand|tool|bag|lamp|flute|horn)/
+    type.type: /([\"?+=!\/(\[]|amulet|scroll|spellbook|ring|potion|wand|tool|bag|lamp|flute|horn|armor|shirt|suit|cloak|helmet|gloves|shield|boots)/
 
 =item -a[mount] [:] <amount>
 

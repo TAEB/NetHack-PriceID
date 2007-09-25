@@ -17,6 +17,19 @@ our %glyph2type =
     '!' => 'potion',
     '/' => 'wand',
     '(' => 'tool',
+    '[' => 'armor',
+);
+
+our %is_enchantable =
+(
+    armor  => 1,
+    shirt  => 1,
+    suit   => 1,
+    cloak  => 1,
+    helmet => 1,
+    gloves => 1,
+    shield => 1,
+    boots  => 1,
 );
 
 our %item_table =
@@ -129,6 +142,50 @@ our %item_table =
         15 => ['tooled horn'],
         50 => ['fire horn', 'frost horn', 'horn of plenty'],
     },
+
+#    shirt =>
+#    {
+#        2 => ['T-shirt'],
+#        3 => ['Hawaiian shirt'],
+#    },
+
+#    suit =>
+#    {
+#    },
+
+    cloak =>
+    {
+        50 => ['cloak of displacement', 'cloak of protection', 'oilskin cloak'],
+        60 => ['cloak of invisibility', 'cloak of magic resistance',
+               'elven cloak'],
+    },
+
+    helmet =>
+    {
+         1 => ['dunce cap'],
+        50 => ['helm of brilliance', 'helm of opposite alignment',
+               'helm of telepathy'],
+        80 => ['cornuthaum'],
+    },
+
+    gloves =>
+    {
+         8 => ['leather gloves'],
+        50 => ['gauntlets of dexterity', 'gauntlets of fumbling',
+               'gauntlets of power'],
+    },
+
+#    shield =>
+#    {
+#        1 => [],
+#    },
+
+    boots =>
+    {
+         8 => ['elven boots', 'kicking boots'],
+        30 => ['fumble boots', 'levitation boots'],
+        50 => ['jumping boots', 'speed boots', 'water walking boots'],
+    },
 );
 
 # dynamically construct a list of all tools from each tool subtype
@@ -138,6 +195,16 @@ for my $in (qw/bag lamp flute horn/)
     {
         @{$item_table{tool}{$price}} = sort @{$item_table{tool}{$price} || []},
                                             @$items;
+    }
+}
+
+# dynamically construct a list of all armor from each armor subtype
+for my $in (qw/shirt suit cloak helmet gloves shield boots/)
+{
+    while (my ($price, $items) = each %{ $item_table{$in} })
+    {
+        @{$item_table{armor}{$price}} = sort @{$item_table{armor}{$price}||[]},
+                                             @$items;
     }
 }
 
