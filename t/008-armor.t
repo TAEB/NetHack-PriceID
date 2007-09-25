@@ -39,7 +39,7 @@ for my $enchantment (0 .. 6)
     (
         in       => 'buy',
         amount   => $prices[$enchantment],
-        type     => '[',
+        type     => 'helmet',
         charisma => 10,
     );
     any_is($name, @p);
@@ -48,7 +48,7 @@ for my $enchantment (0 .. 6)
     (
         in       => 'buy',
         amount   => $surcharge[$enchantment],
-        type     => '[',
+        type     => 'armor',
         charisma => 10,
     );
     any_is($name, @p);
