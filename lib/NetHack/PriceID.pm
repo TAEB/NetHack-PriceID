@@ -20,18 +20,6 @@ our %glyph2type =
     '[' => 'armor',
 );
 
-our %is_enchantable =
-(
-    armor  => 1,
-    shirt  => 1,
-    suit   => 1,
-    cloak  => 1,
-    helmet => 1,
-    gloves => 1,
-    shield => 1,
-    boots  => 1,
-);
-
 our %item_table =
 (
     amulet =>
@@ -201,6 +189,21 @@ for my $in (qw/bag lamp flute horn/)
 # dynamically construct a list of all armor from each armor subtype
 for my $in (qw/shirt suit cloak helmet gloves shield boots/)
 {
+    # automatically calculate +1 .. +6
+    my @prices = reverse sort keys %{ $item_table{$in} };
+    for my $price (@prices)
+    {
+        for my $enchantment (1 .. 6)
+        {
+            my $newprice = $price + 10 * $enchantment;
+
+            for my $item (@{ $item_table{$in}{$price} })
+            {
+                push @{ $item_table{$in}{$newprice} }, "+$enchantment $item";
+            }
+        }
+    }
+
     while (my ($price, $items) = each %{ $item_table{$in} })
     {
         @{$item_table{armor}{$price}} = sort @{$item_table{armor}{$price}||[]},
