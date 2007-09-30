@@ -3,14 +3,13 @@ use strict;
 use warnings;
 use Test::More tests => 42;
 use NetHack::PriceID 'priceid';
-use List::MoreUtils 'any';
 
 sub any_is
 {
     my $expected = shift;
     local $Test::Builder::Level += 1;
 
-    ok(any { $_ eq $expected } @_)
+    ok(grep { $_ eq $expected } @_)
         or do
         {
             diag "Element $expected not in";
