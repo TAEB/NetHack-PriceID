@@ -5,8 +5,6 @@ use inc::Module::Install;
 name           'NetHack-PriceID';
 all_from       'lib/NetHack/PriceID.pm';
 
-requires       'Exporter';
-requires       'parent';
 requires       'Getopt::Euclid';
 
 install_script 'bin/priceid';

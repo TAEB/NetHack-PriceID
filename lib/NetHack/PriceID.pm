@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use integer;
 
-use parent 'Exporter';
+use base 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
 
