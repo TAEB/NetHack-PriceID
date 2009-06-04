@@ -1,4 +1,3 @@
-#!perl
 package NetHack::PriceID;
 use strict;
 use warnings;
