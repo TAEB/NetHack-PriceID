@@ -600,42 +600,6 @@ L<http://interhack.us/>
 
 Shawn M Moore, C<< <sartak at gmail.com> >>
 
-=head1 BUGS
-
-No known bugs.
-
-Please report any bugs through RT: email
-C<bug-nethack-priceid at rt.cpan.org>, or browse to
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=NetHack-PriceID>.
-
-=head1 SUPPORT
-
-You can find this documentation for this module with the perldoc command.
-
-    perldoc NetHack::PriceID
-
-You can also look for information at:
-
-=over 4
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/NetHack-PriceID>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/NetHack-PriceID>
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=NetHack-PriceID>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/NetHack-PriceID>
-
-=back
-
 =head1 COPYRIGHT AND LICENSE
 
 Copyright 2007-2009 Shawn M Moore.
