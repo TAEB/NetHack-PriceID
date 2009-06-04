@@ -9,8 +9,6 @@ requires       'Exporter';
 requires       'parent';
 requires       'Getopt::Euclid';
 
-build_requires 'Test::More';
-
 install_script 'bin/priceid';
 
 auto_install;
