@@ -11,6 +11,7 @@ requires       'Getopt::Euclid';
 
 install_script 'bin/priceid';
 
+githubmeta;
 auto_install;
 WriteAll;
 
