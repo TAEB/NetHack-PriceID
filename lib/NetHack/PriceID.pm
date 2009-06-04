@@ -6,6 +6,7 @@ use integer;
 use base 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
+our $VERSION = '0.04';
 
 our %glyph2type =
 (
@@ -351,17 +352,13 @@ sub _canonicalize_output
     return sort map {@{ $item_table{ $args->{type} }{ $_ } || [] }} @_;
 }
 
+1;
+
+__END__
+
 =head1 NAME
 
 NetHack::PriceID - identify NetHack items using shopkeepers
-
-=head1 VERSION
-
-Version 0.04 released ???
-
-=cut
-
-our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -647,6 +644,4 @@ This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
 =cut
-
-1;
 
