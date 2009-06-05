@@ -320,9 +320,11 @@ NetHack::PriceID - identify NetHack items using shopkeepers
 =head1 SYNOPSIS
 
     use NetHack::PriceID 'priceid';
-    print join ', ', priceid(type => '?',
-                             amount => 100,
-                             in => 'sell');
+    print join ', ', priceid(
+        type   => '?',
+        amount => 100,
+        in     => 'sell',
+    );
     # amnesia, create monster, earth, taming
 
 =head1 DESCRIPTION
