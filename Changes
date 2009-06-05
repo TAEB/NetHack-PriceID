@@ -1,6 +1,9 @@
 Revision history for NetHack-PriceID
 
-0.04
+0.04    Fri Jun 5 00:19:27 2009
+        Modernize the dist
+        Add tools and armor to the type doc
+        Add ordinary helmets
 
 0.03    Mon Sep 24 21:40:58 2007
         Add tools (subtypes: lamp, bag, flute, horn)
