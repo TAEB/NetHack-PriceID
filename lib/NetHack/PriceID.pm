@@ -6,7 +6,7 @@ use integer;
 use base 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 our %glyph2type = (
     '"' => 'amulet',
