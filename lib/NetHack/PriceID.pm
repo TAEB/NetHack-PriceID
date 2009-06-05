@@ -8,8 +8,7 @@ our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
 our $VERSION = '0.04';
 
-our %glyph2type =
-(
+our %glyph2type = (
     '"' => 'amulet',
     '?' => 'scroll',
     '+' => 'spellbook',
@@ -20,10 +19,8 @@ our %glyph2type =
     '[' => 'armor',
 );
 
-our %item_table =
-(
-    amulet =>
-    {
+our %item_table = (
+    amulet => {
         0     => ['cheap plastic imitation of the Amulet of Yendor'],
         150   => ['change', 'ESP', 'life saving', 'magical breathing',
                   'reflection', 'restful sleep', 'strangulation',
@@ -31,8 +28,7 @@ our %item_table =
         30000 => ['Amulet of Yendor'],
     },
 
-    scroll =>
-    {
+    scroll => {
         20  => ['identify'],
         50  => ['light'],
         60  => ['blank paper', 'enchant weapon'],
@@ -44,8 +40,7 @@ our %item_table =
         300 => ['charging', 'genocide', 'punishment', 'stinking cloud'],
     },
 
-    spellbook =>
-    {
+    spellbook => {
         100 => ['detect monsters', 'force bolt', 'healing', 'jumping',
                 'knock', 'light', 'protection', 'sleep'],
         200 => ['confuse monster', 'create monster', 'cure blindness',
@@ -63,8 +58,7 @@ our %item_table =
         700 => ['cancellation', 'finger of death'],
     },
 
-    potion =>
-    {
+    potion => {
         0   => ['uncursed water'],
         50  => ['booze', 'fruit juice', 'see invisible', 'sickness'],
         100 => ['confusion', 'extra healing', 'hallucination', 'healing',
@@ -77,8 +71,7 @@ our %item_table =
         300 => ['gain ability', 'gain level', 'paralysis'],
     },
 
-    ring =>
-    {
+    ring => {
         100 => ['adornment', 'hunger', 'protection',
                 'protection from shape changers', 'stealth',
                 'sustain ability', 'warning'],
@@ -93,8 +86,7 @@ our %item_table =
                 'teleport control'],
     },
 
-    wand =>
-    {
+    wand => {
         0   => ['uncharged'],
         100 => ['light', 'nothing'],
         150 => ['digging', 'enlightenment', 'locking', 'magic missile',
@@ -107,49 +99,41 @@ our %item_table =
         500 => ['death', 'wishing'],
     },
 
-    bag =>
-    {
+    bag => {
         2   => ['sack'],
         100 => ['bag of holding', 'oilskin sack', 'bag of tricks'],
     },
 
-    lamp =>
-    {
+    lamp => {
         10 => ['oil lamp'],
         50 => ['magic lamp'],
     },
 
-    flute =>
-    {
+    flute => {
         12 => ['wooden flute'],
         36 => ['magic flute'],
     },
 
-    horn =>
-    {
+    horn => {
         15 => ['tooled horn'],
         50 => ['fire horn', 'frost horn', 'horn of plenty'],
     },
 
-#    shirt =>
-#    {
+#    shirt => {
 #        2 => ['T-shirt'],
 #        3 => ['Hawaiian shirt'],
 #    },
 
-#    suit =>
-#    {
+#    suit => {
 #    },
 
-    cloak =>
-    {
+    cloak => {
         50 => ['cloak of displacement', 'cloak of protection', 'oilskin cloak'],
         60 => ['cloak of invisibility', 'cloak of magic resistance',
                'elven cloak'],
     },
 
-    helmet =>
-    {
+    helmet => {
          1 => ['dunce cap'],
         10 => ['helmet'],
         50 => ['helm of brilliance', 'helm of opposite alignment',
@@ -157,20 +141,17 @@ our %item_table =
         80 => ['cornuthaum'],
     },
 
-    gloves =>
-    {
+    gloves => {
          8 => ['leather gloves'],
         50 => ['gauntlets of dexterity', 'gauntlets of fumbling',
                'gauntlets of power'],
     },
 
-#    shield =>
-#    {
+#    shield => {
 #        1 => [],
 #    },
 
-    boots =>
-    {
+    boots => {
          8 => ['elven boots', 'kicking boots'],
         30 => ['fumble boots', 'levitation boots'],
         50 => ['jumping boots', 'speed boots', 'water walking boots'],
@@ -178,85 +159,70 @@ our %item_table =
 );
 
 # dynamically construct a list of all tools from each tool subtype
-for my $in (qw/bag lamp flute horn/)
-{
-    while (my ($price, $items) = each %{ $item_table{$in} })
-    {
+for my $in (qw/bag lamp flute horn/) {
+    while (my ($price, $items) = each %{ $item_table{$in} }) {
         @{$item_table{tool}{$price}} = sort @{$item_table{tool}{$price} || []},
                                             @$items;
     }
 }
 
 # dynamically construct a list of all armor from each armor subtype
-for my $in (qw/shirt suit cloak helmet gloves shield boots/)
-{
+for my $in (qw/shirt suit cloak helmet gloves shield boots/) {
     # automatically calculate +1 .. +6
     my @prices = reverse sort keys %{ $item_table{$in} };
-    for my $price (@prices)
-    {
-        for my $enchantment (1 .. 6)
-        {
+    for my $price (@prices) {
+        for my $enchantment (1 .. 6) {
             my $newprice = $price + 10 * $enchantment;
 
-            for my $item (@{ $item_table{$in}{$price} })
-            {
+            for my $item (@{ $item_table{$in}{$price} }) {
                 push @{ $item_table{$in}{$newprice} }, "+$enchantment $item";
             }
         }
     }
 
-    while (my ($price, $items) = each %{ $item_table{$in} })
-    {
+    while (my ($price, $items) = each %{ $item_table{$in} }) {
         @{$item_table{armor}{$price}} = sort @{$item_table{armor}{$price}||[]},
                                              @$items;
     }
 }
 
-sub _croak
-{
+sub _croak {
     require Carp;
     Carp::croak @_;
 }
 
-sub priceid
-{
+sub priceid {
     my %args = _canonicalize_args(@_);
     my @base;
 
-    if ($args{in} eq 'sell')
-    {
+    if ($args{in} eq 'sell') {
         @base = priceid_sell(%args, out => 'base');
     }
-    elsif ($args{in} eq 'buy')
-    {
+    elsif ($args{in} eq 'buy') {
         @base = priceid_buy(%args, out => 'base');
     }
-    elsif ($args{in} eq 'base')
-    {
+    elsif ($args{in} eq 'base') {
         @base = priceid_base(%args, out => 'base');
     }
 
     return _canonicalize_output(\%args, @base);
 }
 
-sub priceid_buy
-{
+sub priceid_buy {
     my %args = _canonicalize_args(@_);
     my @base;
 
     _croak "Calculating 'buy' prices requires that you set 'charisma'."
         if !defined $args{charisma};
 
-    for my $base (keys %{ $item_table{ $args{type} } })
-    {
+    for my $base (keys %{ $item_table{ $args{type} } }) {
         my $tmp = $base;
 
         $tmp = 5 if !$tmp;
 
         my $surcharge = $tmp + $tmp / 3;
 
-        for ($tmp, $surcharge)
-        {
+        for ($tmp, $surcharge) {
             $_ += $_ / 3 if $args{tourist};
             $_ += $_ / 3 if $args{dunce};
 
@@ -271,8 +237,7 @@ sub priceid_buy
 
             if ($args{angry}) { $_ += ($_ + 2) / 3 }
 
-            if (($_ * $args{quan}) == $args{amount})
-            {
+            if (($_ * $args{quan}) == $args{amount}) {
                 push @base, $base;
                 last;
             }
@@ -282,13 +247,11 @@ sub priceid_buy
     return _canonicalize_output(\%args, @base);
 }
 
-sub priceid_sell
-{
+sub priceid_sell {
     my %args = _canonicalize_args(@_);
     my @base;
 
-    for my $base (keys %{ $item_table{ $args{type} } })
-    {
+    for my $base (keys %{ $item_table{ $args{type} } }) {
         my $tmp = $base * $args{quan};
 
         if ($args{tourist})  { $tmp /= 3 }
@@ -298,10 +261,8 @@ sub priceid_sell
         my $surcharge = $tmp - $tmp / 4;
         $surcharge = $tmp unless $tmp > 1;
 
-        for ($tmp, $surcharge)
-        {
-            if ($_ == $args{amount})
-            {
+        for ($tmp, $surcharge) {
+            if ($_ == $args{amount}) {
                 push @base, $base;
                 last;
             }
@@ -311,18 +272,15 @@ sub priceid_sell
     return _canonicalize_output(\%args, @base);
 }
 
-sub priceid_base
-{
+sub priceid_base {
     my %args = _canonicalize_args(@_);
     return _canonicalize_output(\%args, $args{amount});
 }
 
-sub _canonicalize_args
-{
-    my %args =
-    (
-        in => 'base',
-        out => 'names',
+sub _canonicalize_args {
+    my %args = (
+        in   => 'base',
+        out  => 'names',
         quan => 1,
         @_,
     );
@@ -341,8 +299,7 @@ sub _canonicalize_args
     return %args;
 }
 
-sub _canonicalize_output
-{
+sub _canonicalize_output {
     my $args = shift;
 
     return map { [$_, @{ $item_table{ $args->{type} }{ $_ } || [] }] } sort @_

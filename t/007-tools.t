@@ -4,18 +4,15 @@ use warnings;
 use Test::More tests => 48;
 use NetHack::PriceID 'priceid';
 
-sub test_tool
-{
+sub test_tool {
     my ($subtype, $sell, $buy, $expectedbuy, $fullsell, $fullbuy, $charisma) = @_;
     $charisma ||= 10;
     my $expectedsell = $expectedbuy;
     $fullbuy  ||= $expectedbuy;
     $fullsell ||= $expectedsell;
 
-    for my $type ($subtype, 'tool', '(')
-    {
-        my @p = priceid
-        (
+    for my $type ($subtype, 'tool', '(') {
+        my @p = priceid (
             charisma => $charisma,
             in       => 'sell',
             amount   => $sell,
@@ -23,8 +20,7 @@ sub test_tool
         );
         is_deeply(\@p, $expectedsell, "Selling (@$expectedsell) as $type for $sell at $charisma charisma");
 
-        @p = priceid
-        (
+        @p = priceid (
             charisma => $charisma,
             in       => 'buy',
             amount   => $buy,
