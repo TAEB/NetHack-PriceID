@@ -2,11 +2,11 @@ package NetHack::PriceID;
 use strict;
 use warnings;
 use integer;
+# ABSTRACT: identify NetHack items using shopkeepers
 
 use base 'Exporter';
 our @EXPORT_OK = qw(priceid priceid_buy priceid_sell priceid_base);
 our %EXPORT_TAGS = ('all' => \@EXPORT_OK);
-our $VERSION = '0.05';
 
 our %glyph2type = (
     '"' => 'amulet',
@@ -313,10 +313,6 @@ sub _canonicalize_output {
 
 __END__
 
-=head1 NAME
-
-NetHack::PriceID - identify NetHack items using shopkeepers
-
 =head1 SYNOPSIS
 
     use NetHack::PriceID 'priceid';
@@ -554,17 +550,6 @@ L<http://www.chiark.greenend.org.uk/~damerell/games/nhid.html>
 L<http://interhack.us/>
 
 =back
-
-=head1 AUTHOR
-
-Shawn M Moore, C<sartak@gmail.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2007-2009 Shawn M Moore.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
 
 =cut
 

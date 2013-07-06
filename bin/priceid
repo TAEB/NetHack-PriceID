@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use NetHack::PriceID 'priceid';
 use Getopt::Euclid ':minimal_keys';
+# PODNAME: priceid
+# ABSTRACT: identify NetHack items using shopkeepers
 
 $\ = "\n";
 $| = 1;
@@ -26,14 +28,6 @@ else
 }
 
 __END__
-
-=head1 NAME
-
-priceid - identify NetHack items using shopkeepers
-
-=head1 VERSION
-
-This documentation refers to priceid version 0.04 released ???
 
 =head1 REQUIRED ARGUMENTS
 
@@ -106,11 +100,3 @@ The number of items in the stack that you're buying/selling.
     quan.default: 1
 
 =back
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2007 Shawn M Moore.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
