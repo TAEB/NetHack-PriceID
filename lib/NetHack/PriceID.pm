@@ -188,7 +188,7 @@ for my $in (qw/shirt suit cloak helmet gloves shield boots/) {
 
 sub _croak {
     require Carp;
-    Carp::croak @_;
+    Carp::croak(@_);
 }
 
 sub priceid {
