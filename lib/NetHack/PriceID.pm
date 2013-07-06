@@ -547,7 +547,7 @@ L<http://www.chiark.greenend.org.uk/~damerell/games/nhid.html>
 
 =item Interhack
 
-L<http://interhack.us/>
+L<http://taeb.github.io/interhack/>
 
 =back
 
