@@ -539,7 +539,7 @@ L<http://nethack.roy.org/clippy/clippy.pl>
 
 =item HiSPeed's NetHack Helper
 
-L<http://hsp.katron.org/nh-helper.html>
+L<http://nethack.holics.at/nh-helper-public/nh-helper.html>
 
 =item NetHack Object Identification Spoiler
 

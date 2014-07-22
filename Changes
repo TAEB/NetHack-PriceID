@@ -1,6 +1,7 @@
 Revision history for NetHack-PriceID
 
 {{$NEXT}}
+        Fix HiSPeed's NetHack Helper link
 
 0.04    Fri Jun 5 00:19:27 2009
         Modernize the dist
